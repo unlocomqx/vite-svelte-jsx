@@ -1,8 +1,8 @@
 {
-  "name": "@vitejs/plugin-svelte-jsx",
+  "name": "vite-svelte-jsx",
   "version": "1.0.0",
   "license": "MIT",
-  "author": "Evan You",
+  "author": "unlocomqx",
   "files": [
     "index.js",
     "index.d.ts"
@@ -10,7 +10,7 @@
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s --commit-path . --lerna-package plugin-svelte-jsx",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s --commit-path . --lerna-package vite-svelte-jsx",
     "release": "node ../../scripts/release.js --skipBuild"
   },
   "engines": {
@@ -18,13 +18,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vitejs/vite.git",
-    "directory": "packages/plugin-svelte-jsx"
+    "url": "git+https://github.com/unlocomqx/vite-svelte-jsx.git"
   },
   "bugs": {
-    "url": "https://github.com/vitejs/vite/issues"
+    "url": "https://github.com/unlocomqx/vite-svelte-jsx/issues"
   },
-  "homepage": "https://github.com/vitejs/vite/tree/main/packages/plugin-svelte-jsx#readme",
+  "homepage": "https://github.com/unlocomqx/vite-svelte-jsx#readme",
   "dependencies": {
     "@babel/core": "^7.14.6",
     "@babel/plugin-syntax-import-meta": "^7.10.4",
@@ -32,9 +31,10 @@
     "@rollup/pluginutils": "^4.1.0",
     "@vue/babel-plugin-jsx": "^1.0.6",
     "hash-sum": "^2.0.0",
-    "svelte-jsx": "^2.0.0"
-  },
-  "devDependencies": {
+    "svelte-jsx": "^2.0.0",
     "@babel/plugin-transform-react-jsx": "^7.14.5"
+  },
+  "peerDependencies": {
+    "vite": "^2.4.4"
   }
 }
