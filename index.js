@@ -22,11 +22,7 @@ function svelteJsxPlugin(options = {}) {
         esbuild: {
           include: /\.ts$/
         },
-        define: {
-          __VUE_OPTIONS_API__: true,
-          __VUE_PROD_DEVTOOLS__: false,
-          ...config.define
-        }
+        define: config.define
       }
     },
 
@@ -36,7 +32,7 @@ function svelteJsxPlugin(options = {}) {
       root = config.root
     },
 
-    transform(code, id, ssr) {
+    transform(code, id) {
       const {
         include,
         exclude,
@@ -61,8 +57,6 @@ function svelteJsxPlugin(options = {}) {
           { runtime: 'automatic', importSource: 'svelte-jsx' }
         ])
 
-        console.log(plugins)
-
         const result = babel.transformSync(code, {
           babelrc: false,
           ast: true,
@@ -72,8 +66,6 @@ function svelteJsxPlugin(options = {}) {
           configFile: false
         })
 
-        console.log(result.code)
-
         return {
           code: result.code,
           map: result.map
@@ -81,34 +73,6 @@ function svelteJsxPlugin(options = {}) {
       }
     }
   }
-}
-
-/**
- * @param {import('@babel/core').types.VariableDeclaration} node
- * @param {string} source
- */
-function parseComponentDecls(node, source) {
-  const names = []
-  for (const decl of node.declarations) {
-    if (decl.id.type === 'Identifier' && isDefineComponentCall(decl.init)) {
-      names.push({
-        name: decl.id.name
-      })
-    }
-  }
-  return names
-}
-
-/**
- * @param {import('@babel/core').types.Node} node
- */
-function isDefineComponentCall(node) {
-  return (
-    node &&
-    node.type === 'CallExpression' &&
-    node.callee.type === 'Identifier' &&
-    node.callee.name === 'defineComponent'
-  )
 }
 
 module.exports = svelteJsxPlugin
