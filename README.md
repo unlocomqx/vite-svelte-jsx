@@ -1,14 +1,14 @@
-# @vitejs/plugin-vue-jsx [![npm](https://img.shields.io/npm/v/@vitejs/plugin-vue-jsx.svg)](https://npmjs.com/package/@vitejs/plugin-vue-jsx)
+# vite-svelte-jsx [![npm](https://img.shields.io/npm/v/vite-svelte-jsx.svg)](https://npmjs.com/package/vite-svelte-jsx)
 
-Provides Vue 3 JSX & TSX support with HMR.
+Provides Svelte JSX & TSX support.
 
 ```js
 // vite.config.js
-import vueJsx from '@vitejs/plugin-vue-jsx'
+import svelteJsx from 'vite-svelte-jsx'
 
 export default {
   plugins: [
-    vueJsx({
+    svelteJsx({
       // options are passed on to @vue/babel-plugin-jsx
     })
   ]
@@ -19,40 +19,7 @@ export default {
 
 See [@vue/babel-plugin-jsx](https://github.com/vuejs/jsx-next).
 
-## HMR Detection
+### How to use
 
-This plugin supports HMR of Vue JSX components. The detection requirements are:
-
-- The component must be exported.
-- The component must be declared by calling `defineComponent` via a root-level statement, either variable declaration or export declaration.
-
-### Supported patterns
-
-```jsx
-import { defineComponent } from 'vue'
-
-// named exports w/ variable declaration: ok
-export const Foo = defineComponent({})
-
-// named exports referencing variable declaration: ok
-const Bar = defineComponent({ render() { return <div>Test</div> }})
-export { Bar }
-
-// default export call: ok
-export default defineComponent({ render() { return <div>Test</div> }})
-
-// default export referencing variable declaration: ok
-const Baz = defineComponent({ render() { return <div>Test</div> }})
-export default Baz
-```
-
-### Non-supported patterns
-
-```jsx
-// not using `defineComponent` call
-export const Bar = { ... }
-
-// not exported
-const Foo = defineComponent(...)
-```
-# vite-svelte-jsx
+This plugin uses [svelte-jsx](https://github.com/kenoxa/svelte-jsx#usage) under the hood.  
+Check the svelte-jsx documentation to check how to write svelte jsx code.
