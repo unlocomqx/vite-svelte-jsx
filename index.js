@@ -44,11 +44,11 @@ function svelteJsxPlugin(options = {}) {
       if (filter(id)) {
         const plugins = [...babelPlugins]
         if (id.endsWith('.tsx')) {
-          // plugins.push([
-          //   require('@babel/plugin-transform-typescript'),
-          //   // @ts-ignore
-          //   { isTSX: true, allowExtensions: true }
-          // ])
+          plugins.push([
+            require('@babel/plugin-transform-typescript'),
+            // @ts-ignore
+            { isTSX: true, allowExtensions: true }
+          ])
         }
 
         plugins.push([
